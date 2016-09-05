@@ -1,0 +1,283 @@
+/* $toolbar-size : 81px;
+.toolbar {
+	position: fixed;
+	left: 50%;
+	bottom: 5px;
+	margin-left: -$toolbar-size / 2;
+	top: 30%;
+ }
+.toolbar-item, .toolbar-layer {
+	background-image: url(../img/sprites.png);
+	background-repeat: no-repeat;
+}
+.toolbar-item {
+	position: relative;
+	display: block;
+	width: $toolbar-size;
+	height: $toolbar-size;
+}
+.toolbar-item-weixin {
+	background-position: 0 0;
+	&:hover {
+		background-position: -81px 0;
+		.toolbar-layer {
+			@include opacity(1);
+			@include scale(1);
+		}
+	}
+}
+.toolbar-item-app {
+	background-position: -162px 0;
+	&:hover {
+		background-position: 0 -81px;
+		.toolbar-layer {
+			@include opacity(1);
+			@include scale(1);
+		}
+	}
+}
+.toolbar-item-top {
+	background-position: -162px -81px;
+	&:hover {
+		background-position: -81px -81px;
+	}
+}
+.toolbar-layer {
+	position: absolute;
+	width: 81px;
+	height: 81px;
+	left: -81px;
+	background-position: -162px 0px;
+	@include transform-origin(right bottom);
+	@include scale(0.01);
+	@include opacity(0);
+	@include transition(all 0.5s);
+} */
+
+/*******************************************************/
+
+/* $toolbar-size: 81px;
+.toolbar {
+	position: fixed;
+	left: 50%;
+	margin-left: -$toolbar-size / 2;
+	bottom: 30%;
+}
+.toolbar-item, .toolbar-btn, .toolbar-icon, .toolbar-text, .toolbar-layer{
+	width: $toolbar-size;
+	height: $toolbar-size;
+}
+.toolbar-item {
+	position: relative;
+	display: block;
+	margin-top: 1px;
+
+	&:hover {
+		.toolbar-icon {
+			top: -$toolbar-size;
+		}
+		.toolbar-text {
+			top: 0;
+		}
+		.toolbar-layer {
+			@include scale(1);
+			@include opacity(1);
+		}
+	}
+}
+.toolbar-btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+.toolbar-icon, .toolbar-text {
+	position: absolute;
+	left: 0;
+	color: #fff;
+	text-align: center;
+	@include transition(top 1s);
+}
+.toolbar-icon {
+	top: 0;
+	background-color: #d0d6d9;
+	font-size: 30px;
+	line-height: $toolbar-size;
+}
+.toolbar-text {
+	top: $toolbar-size;
+	background-color: #98a1a6;
+	padding-top: 15px;
+	font-size: 24px;
+	line-height: 1.2;
+}
+.toolbar-layer {
+	position: absolute;
+	right: $toolbar-size;
+	background-image: url(../img/sprites.png);
+	background-repeat: no-repeat;
+	@include scale(0.01);
+	@include transform-origin(right bottom);
+	@include opacity(0);
+	@include transition(all 1s);
+}
+.toolbar-layer-weixin {
+	height: $toolbar-size;
+	background-position: -162px 0;
+}
+.toolbar-layer-app {
+	height: $toolbar-size;
+	background-position: 0 0;
+} */
+
+$toolbar-size: 81px;
+.toolbar {
+	position: fixed;
+	left: 50%;
+	bottom: 30%;
+	margin-left: -$toolbar-size / 2;
+}
+.toolbar-item {
+	position: relative;
+	display: block;
+	width: $toolbar-size;
+	height: $toolbar-size;
+	
+	&:after {
+		content: "";
+		position: absolute;
+		width: $toolbar-size;
+		height: $toolbar-size;
+		right: $toolbar-size;
+		background-image: url(../img/sprites.png);
+		background-repeat: no-repeat;
+		@include opacity(0);
+		@include scale(0.01);
+		@include transform-origin(right bottom);
+		@include transition(all 1s);
+	}
+
+	&:hover {
+		.toolbar-btn {
+			&:before {
+				top: -$toolbar-size;
+			}
+			&:after {
+				top: 0;
+			}
+		}
+		&:after {
+			@include opacity(1);
+			@include scale(1);
+		}
+	}
+}
+.toolbar-item-weixin {
+	&:after {
+		content: "";
+		background-position: 0 0;
+	}
+	.toolbar-btn {
+		@extend .icon-wechat;  // 继承
+		/* &:before {
+			content: "\e900";
+		} */
+		&:after {
+			content: "公众\A账号";
+		}
+	}
+}
+.toolbar-item-app {
+	&:after {
+		content: "";
+		background-position: -162px -81px;
+	}
+	.toolbar-btn {
+		@extend .icon-mobile;
+		/* &:before {
+			content: "\e958";
+		} */
+		&:after {
+			content: "APP\A下载"
+		}
+	}
+}
+.toolbar-item-top {
+	&:after {
+		content: "";
+		background-position: 256px 256px;
+	}
+	.toolbar-btn {
+		@extend .icon-arrow-up2;
+		/* &:before {
+			content: "\ea3a";
+		} */
+		&:after {
+			content: "返回\A顶部";
+		}
+	}
+}
+.toolbar-btn {
+	&, &:before, &:after {
+		width: $toolbar-size;
+		height: $toolbar-size;
+		position: absolute;
+		left: 0;
+	}
+	&:before, &:after {
+		content: "";
+		color: #000;
+		text-align: center;
+		@include transition(top 1s);
+	}
+
+	//position: absolute;
+	top: 0;
+	//left: 0;
+	overflow: hidden;
+
+	/* use !important to prevent issues with browser extensions that change fonts */
+	/* font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1; */
+
+	/* Better Font Rendering =========== */
+	/* -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale; */
+	@extend [class^="icon-"];
+
+	&:before { // icon
+		//content: "";
+		//position: absolute;
+		top: 0;
+		//left: 0;
+		/* width: $toolbar-size;
+		height: $toolbar-size; */
+		background-color: #dod7d9;
+		font-size: 30px;
+		//color: #000;
+		//text-align: center;
+		line-height: $toolbar-size;
+		//@include transition(top 1s);
+	}
+	&:after { // text
+		//content: "";
+		//position: absolute;
+		top: $toolbar-size;
+		//left: 0;
+		/* width: $toolbar-size;
+		height: $toolbar-size; */
+		background-color: #98a1a6;
+		padding-top: 15px;
+		font-size: 24px;
+		//color: #000;
+		//text-align: center;
+		line-height: 1.2;
+		//@include transition(top 1s);
+		white-space: pre;
+	}
+}

@@ -1,0 +1,22 @@
+{
+  "name": "toolbar_with_backing_to_top",
+  "description": "test bower",
+  "main": "",
+  "authors": [
+    "yunfeili"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "requirejs": "^2.2.0"
+  }
+}

@@ -1,0 +1,128 @@
+/* $toolbar-size : 81px;
+.toolbar {
+	position: fixed;
+	left: 50%;
+	bottom: 5px;
+	margin-left: -$toolbar-size / 2;
+	top: 30%;
+ }
+.toolbar-item, .toolbar-layer {
+	background-image: url(../img/sprites.png);
+	background-repeat: no-repeat;
+}
+.toolbar-item {
+	position: relative;
+	display: block;
+	width: $toolbar-size;
+	height: $toolbar-size;
+}
+.toolbar-item-weixin {
+	background-position: 0 0;
+	&:hover {
+		background-position: -81px 0;
+		.toolbar-layer {
+			@include opacity(1);
+			@include scale(1);
+		}
+	}
+}
+.toolbar-item-app {
+	background-position: -162px 0;
+	&:hover {
+		background-position: 0 -81px;
+		.toolbar-layer {
+			@include opacity(1);
+			@include scale(1);
+		}
+	}
+}
+.toolbar-item-top {
+	background-position: -162px -81px;
+	&:hover {
+		background-position: -81px -81px;
+	}
+}
+.toolbar-layer {
+	position: absolute;
+	width: 81px;
+	height: 81px;
+	left: -81px;
+	background-position: -162px 0px;
+	@include transform-origin(right bottom);
+	@include scale(0.01);
+	@include opacity(0);
+	@include transition(all 0.5s);
+} */
+$toolbar-size: 81px;
+.toolbar {
+	position: fixed;
+	left: 50%;
+	margin-left: -$toolbar-size / 2;
+	bottom: 30%;
+}
+.toolbar-item, .toolbar-btn, .toolbar-icon, .toolbar-text, .toolbar-layer{
+	width: $toolbar-size;
+	height: $toolbar-size;
+}
+.toolbar-item {
+	position: relative;
+	display: block;
+	margin-top: 1px;
+
+	&:hover {
+		.toolbar-icon {
+			top: -$toolbar-size;
+		}
+		.toolbar-text {
+			top: 0;
+		}
+		.toolbar-layer {
+			@include scale(1);
+			@include opacity(1);
+		}
+	}
+}
+.toolbar-btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+.toolbar-icon, .toolbar-text {
+	position: absolute;
+	left: 0;
+	color: #fff;
+	text-align: center;
+	@include transition(top 1s);
+}
+.toolbar-icon {
+	top: 0;
+	background-color: #d0d6d9;
+	font-size: 30px;
+	line-height: $toolbar-size;
+}
+.toolbar-text {
+	top: $toolbar-size;
+	background-color: #98a1a6;
+	padding-top: 15px;
+	font-size: 24px;
+	line-height: 1.2;
+}
+.toolbar-layer {
+	position: absolute;
+	right: $toolbar-size;
+	background-image: url(../img/sprites.png);
+	background-repeat: no-repeat;
+	@include scale(0.01);
+	@include transform-origin(right bottom);
+	@include opacity(0);
+	@include transition(all 1s);
+}
+.toolbar-layer-weixin {
+	height: $toolbar-size;
+	background-position: -162px 0;
+}
+.toolbar-layer-app {
+	height: $toolbar-size;
+	background-position: 0 0;
+}
